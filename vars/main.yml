@@ -1,0 +1,13 @@
+---
+# vars file for gator
+gator_os: '{{ ansible_system | lower }}'
+gator_arch: '{{ gator_arch_map[ansible_architecture] }}'
+gator_platform: '{{ gator_os }}-{{ gator_arch }}'
+gator_prefix: gator-v{{ gator_ver }}-{{ gator_platform }}
+gator_archive: '{{ gator_prefix }}.{{ gator_archive_type | default("tar.gz") }}'
+gator_tmp_archive: '{{ gator_tmp_dir | default("/tmp") }}/{{ gator_archive }}'
+gator_url: '{{ gator_mirror }}/v{{ gator_ver }}/{{ gator_archive }}'
+gator_checksum: '{{ gator_checksums[gator_ver][gator_platform] }}'
+gator_install_dir: '{{ gator_parent_install_dir }}/{{ gator_prefix }}'
+gator_install_exe: '{{ gator_install_dir }}/gator'
+gator_link: '{{ gator_parent_install_dir }}/bin/gator'
