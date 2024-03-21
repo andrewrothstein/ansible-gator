@@ -1,8 +1,9 @@
 ---
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,48 +12,49 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: look for install at {{ gator_install_exe }}
+- name: Look for install at {{ gator_install_exe }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ gator_install_exe }}'
   changed_when: false
   register: gator_binary
-- when: not gator_binary.stat.exists
+- name: Downloading and installing gator
+  when: not gator_binary.stat.exists
   block:
-    - name: download {{ gator_url }} to {{ gator_tmp_archive }}
+    - name: Downloading {{ gator_url }} to {{ gator_tmp_archive }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ gator_url }}'
         dest: '{{ gator_tmp_archive }}'
-        mode: 0644
+        mode: '644'
         checksum: '{{ gator_checksum }}'
-    - name: mkdir -p {{ gator_install_dir }}
+    - name: Mkdir -p {{ gator_install_dir }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ gator_install_dir }}'
         state: directory
-        mode: 0755
-    - name: unarchive {{ gator_tmp_archive }} to {{ gator_install_dir }}
+        mode: '755'
+    - name: Unarchive {{ gator_tmp_archive }} to {{ gator_install_dir }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ gator_tmp_archive }}'
         dest: '{{ gator_install_dir }}'
         creates: '{{ gator_install_exe }}'
   always:
-    - name: rm -f {{ gator_tmp_archive }}
+    - name: Rm -f {{ gator_tmp_archive }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ gator_tmp_archive }}'
         state: absent
-- name: linking {{ gator_link }} to {{ gator_install_exe }}
+- name: Linking {{ gator_link }} to {{ gator_install_exe }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ gator_install_exe }}'
     dest: '{{ gator_link }}'
     state: link
