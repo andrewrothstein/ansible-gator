@@ -38,4 +38,4 @@ dl_ver() {
     dl $ver $lchecksums linux arm64
 }
 
-dl_ver ${1:-3.15.1}
+dl_ver ${1:-3.16.2}
