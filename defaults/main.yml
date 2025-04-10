@@ -1,6 +1,6 @@
 ---
 # defaults file for gator
-gator_ver: 3.18.2
+gator_ver: 3.19.0
 gator_arch_map:
   aarch64: arm64
   arm64: arm64
@@ -128,3 +128,13 @@ gator_checksums:
     linux-amd64: sha256:e9a81ed790f3a7ffafb59136a602f3644e8020152291b549798f4c6a1b274033
     # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.18.2/gator-v3.18.2-linux-arm64.tar.gz
     linux-arm64: sha256:db9e61cbfad3959d8a3f10aa039dd015aca5bd0278ffa5d214ac7cf673484db4
+  # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.19.0/sha256sums.txt
+  '3.19.0':
+    # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.19.0/gator-v3.19.0-darwin-amd64.tar.gz
+    darwin-amd64: sha256:87e9430919a3f84476573cf3b3158fb13e0fc620a2f5d2de4d39a336b80bbb4a
+    # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.19.0/gator-v3.19.0-darwin-arm64.tar.gz
+    darwin-arm64: sha256:d91fb1bef878f6c425061bb3dfdcb6f747a6b931bf5aaed38ca8381affc77340
+    # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.19.0/gator-v3.19.0-linux-amd64.tar.gz
+    linux-amd64: sha256:4a6dc71681c182f2a4793264b142235a45154bc33bbe771b9da36babf27efa27
+    # https://github.com/open-policy-agent/gatekeeper/releases/download/v3.19.0/gator-v3.19.0-linux-arm64.tar.gz
+    linux-arm64: sha256:cc0f10a016349fd5d14699f1d44cf9ec676e4ad07fc3c0df01009379c9ddc17b
