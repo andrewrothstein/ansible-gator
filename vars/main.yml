@@ -1,7 +1,7 @@
 ---
 # vars file for gator
-gator_os: '{{ ansible_system | lower }}'
-gator_arch: '{{ gator_arch_map[ansible_architecture] }}'
+gator_os: '{{ ansible_facts["system"] | lower }}'
+gator_arch: '{{ gator_arch_map[ansible_facts["architecture"]] }}'
 gator_platform: '{{ gator_os }}-{{ gator_arch }}'
 gator_prefix: gator-v{{ gator_ver }}-{{ gator_platform }}
 gator_archive: '{{ gator_prefix }}.{{ gator_archive_type | default("tar.gz") }}'

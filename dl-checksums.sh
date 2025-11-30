@@ -38,4 +38,9 @@ dl_ver() {
     dl $ver $lchecksums linux arm64
 }
 
-dl_ver ${1:-3.19.0}
+dl_ver 3.19.1
+dl_ver 3.19.2
+dl_ver 3.19.3
+dl_ver 3.20.0
+dl_ver 3.20.1
+dl_ver ${1:-3.21.0}
